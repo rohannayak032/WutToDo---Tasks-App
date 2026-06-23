@@ -1,0 +1,54 @@
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#Header{
+    width: 100%;
+    text-align: center;
+    background-color: antiquewhite;
+}
+#task-box{
+    margin-top: 200px;
+    width: 650px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #E8F4F8;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #B0D4E3;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#input-group{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+#ip-box{
+    width: 300px;
+    height: 20px;
+    padding: 8px;
+}
+
+#add_btn{
+    width: 100px;
+    height: 40px;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li {
+    background-color: white;
+    padding: 10px 12px;
+    margin: 5px 0;
+    border-radius: 6px;
+    border-left: 4px solid #4A9FB5;
+}
