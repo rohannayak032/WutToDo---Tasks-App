@@ -38,7 +38,8 @@ Creating my own To-Do Tasks web application while learning Web Development. The 
 - Refactored JavaScript into a separate file
 - Improved project structure
 
-### v0.7.0 State-based architecture
-- Array of task objects
-- Centralized renderTasks()
-- UI rendered from state
+### v0.7.0 - State-Based Architecture
+- Migrated task storage from DOM elements to an array of task objects
+- Introduced centralized rendering with renderTasks()
+- Implemented state-driven UI updates
+- Improved maintainability and scalability
