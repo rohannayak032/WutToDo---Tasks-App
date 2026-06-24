@@ -5,6 +5,56 @@ const cul = document.querySelector("#completed-list")
 let tot_count = document.querySelector("#tot-count");
 let rem_count = document.querySelector("#rem-count");
 let comp_count = document.querySelector("#comp-count");
+let tasks = [];
+//RENDERING TASKS
+function renderTasks(){
+    ul.innerHTML="";
+    tasks.forEach((task,index) =>{
+        let li = document.createElement("li");
+        let checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = task.completed;
+        let span = document.createElement("span");
+        span.innerText = task.text;
+        if(task.completed == true){
+            span.classList.add("completed-text");
+        }
+        const del = document.createElement("button");
+        del.innerText = "X";
+        ip_box.value = "";
+        del.classList.add("delete-btn");
+        li.appendChild(checkbox);
+        li.appendChild(span);
+        li.appendChild(del);
+        ul.appendChild(li);
+
+        del.addEventListener("click", function (){
+            tasks.splice(index, 1);
+            renderTasks();
+        })
+
+        checkbox.addEventListener("change",function() {
+            if(task.completed == false){
+                task.completed = true;
+                renderTasks();
+            }
+            else{
+                task.completed = false;
+                renderTasks();
+            }
+        })
+    });
+    let tc = tasks.length;
+    let rc = tasks.filter(function(task) {
+        return !task.completed;
+    }).length;
+    let cc = tasks.filter(function(task){ 
+        return task.completed;
+    }).length;
+    tot_count.innerText = tc;
+    rem_count.innerText = rc;
+    comp_count.innerText = cc;
+}
 
 //ADD TASK
 function addTask() {
@@ -13,46 +63,17 @@ function addTask() {
         alert("Please enter a task");
         return;
     }
-    let li = document.createElement("li");
-    const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
-    let span = document.createElement("span");
-    span.innerText = task;
-    li.appendChild(checkbox);
-    li.appendChild(span);
-    ul.appendChild(li);
-    const del = document.createElement("button");
-    del.innerText = "X";
-    li.appendChild(del);
+    let task_obj = {
+        text: task,
+        completed: false
+    }
+    tasks.push(task_obj);
+    console.log(tasks);
+    renderTasks();
     ip_box.value = "";
-    del.classList.add("delete-btn");
-    tot_count.innerText = parseInt(tot_count.innerText)+1;
-    rem_count.innerText = parseInt(rem_count.innerText)+1;
-
-    del.addEventListener("click", function () {
-        li.remove();
-        del.remove();
-        tot_count.innerText = parseInt(tot_count.innerText)-1;
-        rem_count.innerText = parseInt(rem_count.innerText)-1;
-        if(parseInt(comp_count.innerText)>0){
-            comp_count.innerText = parseInt(comp_count.innerText)-1;
-        }
-    })
-
-    checkbox.addEventListener("change", function() {
-        span.classList.toggle("completed-text");
-        if(checkbox.checked){
-            rem_count.innerText = parseInt(rem_count.innerText)-1;
-            comp_count.innerText = parseInt(comp_count.innerText)+1;
-        }
-        else{
-            rem_count.innerText = parseInt(rem_count.innerText)+1;
-            comp_count.innerText = parseInt(comp_count.innerText)-1;
-        }
-    })
-    
-    
 }
+
+//ENTER KEY FUNCTIONALITY
 ip_box.addEventListener("keydown", function(event) {
     if(event.key=="Enter"){
         addTask();

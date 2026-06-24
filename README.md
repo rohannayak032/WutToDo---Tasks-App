@@ -37,3 +37,8 @@ Creating my own To-Do Tasks web application while learning Web Development. The 
 - Added live statistics dashboard
 - Refactored JavaScript into a separate file
 - Improved project structure
+
+### v0.7.0 State-based architecture
+- Array of task objects
+- Centralized renderTasks()
+- UI rendered from state
