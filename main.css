@@ -46,9 +46,36 @@ ul {
 }
 
 li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     background-color: white;
     padding: 10px 12px;
     margin: 5px 0;
     border-radius: 6px;
     border-left: 4px solid #4A9FB5;
+}
+
+.task-text{
+    flex: 1 1 auto;
+    margin-right: 12px;
+}
+
+.delete-btn{
+    background-color: #FF6B6B;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.delete-btn:hover{
+    background-color: #ff4c4c;
+}
+
+.completed-text{
+    opacity: 0.6;
+    text-decoration: line-through;
+    color: grey;
 }

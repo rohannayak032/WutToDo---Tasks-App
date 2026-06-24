@@ -3,47 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FlowState</title>
+    <title>WutToDo</title>
     <link rel = "stylesheet" href = "main.css">
 </head>
 <body>
     <div class = "container">
         <div id = "Header">
-            <h1>Flow State</h1>
+            <h1>WutToDo</h1>
         </div>
 
         <div id = "task-box">
+            <span>Total Tasks: <span id = "tot-count">0</span></span>
+            <span>Remaining Tasks: <span id = "rem-count">0</span></span>
+            <span>Completed Tasks: <span id = "comp-count">0</span></span>
             <div id = "input-group">
                 <input id = "ip-box" placeholder="Enter task">
                 <button id = "add_btn">Add</button>
             </div>
             <ul id = "task-list">
-
+                
             </ul>
-        </div>
+        </div>  
     </div>
-    
+    <script src="script.js"></script>
 </body>
-<script>
-    const addbtn = document.getElementById("add_btn");
-    let ip_box = document.getElementById("ip-box");    
-    const ul = document.querySelector("#task-list");
-    function addTask() {
-        let task = ip_box.value;
-        if(task.trim()==""){
-            alert("Please enter a task");
-            return;
-        }
-        let li = document.createElement("li");
-        li.innerText = task;
-        ul.appendChild(li);
-        ip_box.value = "";
-    }
-    ip_box.addEventListener("keydown", function(event) {
-        if(event.key=="Enter"){
-            addTask();
-        }
-    })
-    addbtn.addEventListener("click", addTask);
-</script>
+
 </html>
