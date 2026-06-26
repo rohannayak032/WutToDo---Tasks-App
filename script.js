@@ -1,3 +1,4 @@
+let tasks = [];
 const addbtn = document.getElementById("add_btn");
 let ip_box = document.getElementById("ip-box");    
 const ul = document.querySelector("#task-list");
@@ -5,7 +6,21 @@ const cul = document.querySelector("#completed-list")
 let tot_count = document.querySelector("#tot-count");
 let rem_count = document.querySelector("#rem-count");
 let comp_count = document.querySelector("#comp-count");
-let tasks = [];
+
+
+//SAVING TASKS
+function saveTasks(){
+    let t = JSON.stringify(tasks);
+    localStorage.setItem("tasks",t);
+}
+//LOADING TASKS
+function loadTasks(){
+    let savedTasks = localStorage.getItem("tasks");
+    if(savedTasks){
+        tasks = JSON.parse(savedTasks);
+        renderTasks();
+    }
+}
 //RENDERING TASKS
 function renderTasks(){
     ul.innerHTML="";
@@ -30,16 +45,19 @@ function renderTasks(){
 
         del.addEventListener("click", function (){
             tasks.splice(index, 1);
+            saveTasks();
             renderTasks();
         })
 
         checkbox.addEventListener("change",function() {
             if(task.completed == false){
                 task.completed = true;
+                saveTasks();
                 renderTasks();
             }
             else{
                 task.completed = false;
+                saveTasks();
                 renderTasks();
             }
         })
@@ -68,7 +86,7 @@ function addTask() {
         completed: false
     }
     tasks.push(task_obj);
-    console.log(tasks);
+    saveTasks();
     renderTasks();
     ip_box.value = "";
 }
@@ -80,3 +98,5 @@ ip_box.addEventListener("keydown", function(event) {
     }
 })
 addbtn.addEventListener("click", addTask);
+
+loadTasks();
